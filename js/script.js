@@ -17,8 +17,13 @@ async function searchUser() {
   let inputValue = searchUserInput.value;
   users.then((object) => {
     results = object.results.filter((object) => {
-      return object.name.first.includes(inputValue);
+      let name = `${object.name.first} ${object.name.last}`.toLowerCase();
+      if (name.includes(inputValue.toLowerCase())) return object;
     });
+
+    var idades = results.reduce((acc, val) => acc + val.dob.age, 0);
+    console.log(idades);
+
     showSearchResults(results);
   });
 }
