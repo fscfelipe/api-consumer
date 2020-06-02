@@ -38,10 +38,36 @@ async function searchUser() {
 }
 
 function showSearchResults(searchResults) {
-  console.log(searchResults);
-  let usersUl = document.querySelector('usersList');
-  let userLi = document.createElement('li');
-  searchResults.forEach((element) => {});
+  // Recreate the users list
+  let usersUl = document.querySelector('.usersList');
+  eraseUsersList(usersUl);
+  let userLi;
+
+  searchResults.forEach((user) => {
+    // List element
+    userLi = document.createElement('li');
+    // Picture element
+    let userPic = document.createElement('img');
+    userPic.src = user.picture.medium;
+    // Span (Name) element
+    let userName = document.createElement('span');
+    userName.innerText = `${user.name}, `;
+    // Span (Age) element
+    let userAge = document.createElement('span');
+    userAge.innerText = user.age;
+    userAge.innerText = user.age;
+    // Appending user to list
+    userLi.appendChild(userPic);
+    userLi.appendChild(userName);
+    userLi.appendChild(userAge);
+    usersUl.appendChild(userLi);
+  });
+}
+
+function eraseUsersList(usersList) {
+  while (usersList.firstChild) {
+    usersList.removeChild(usersList.firstChild);
+  }
 }
 
 startEvents();
