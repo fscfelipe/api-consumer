@@ -12,29 +12,35 @@ async function getUsers() {
   return await users.json();
 }
 
-async function searchUser() {
-  let searchUserInput = document.querySelector('#userSearchInput');
-  let inputValue = searchUserInput.value;
+async function searchUser(target) {
+  if (target.key === 'Enter') {
+    let searchUserInput = document.querySelector('#userSearchInput');
+    let inputValue = searchUserInput.value;
 
-  users.then((object) => {
-    // Filtering and mapping users
-    results = object.results
-      .filter(({ name, picture, dob, gender }) => {
-        let nameUser = `${name.first} ${name.last}`.toLowerCase();
-        if (nameUser.includes(inputValue.toLowerCase())) return object;
-      })
-      .map((user) => {
-        return {
-          name: `${user.name.first} ${user.name.last}`,
-          gender: user.gender,
-          picture: user.picture,
-          age: user.dob.age,
-          gender: user.gender,
-        };
-      });
+    users.then((object) => {
+      // Filtering and mapping users
+      results = object.results
+        .filter(({ name, picture, dob, gender }) => {
+          let nameUser = `${name.first} ${name.last}`.toLowerCase();
+          if (nameUser.includes(inputValue.toLowerCase())) return object;
+        })
+        .map((user) => {
+          return {
+            name: `${user.name.first} ${user.name.last}`,
+            gender: user.gender,
+            picture: user.picture,
+            age: user.dob.age,
+            gender: user.gender,
+          };
+        })
+        .sort(function (a, b) {
+          // Sort by name
+          return a.name.localeCompare(b.name);
+        });
 
-    showSearchResults(results);
-  });
+      showSearchResults(results);
+    });
+  }
 }
 
 function showSearchResults(searchResults) {
