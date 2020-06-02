@@ -15,14 +15,23 @@ async function getUsers() {
 async function searchUser() {
   let searchUserInput = document.querySelector('#userSearchInput');
   let inputValue = searchUserInput.value;
-  users.then((object) => {
-    results = object.results.filter((object) => {
-      let name = `${object.name.first} ${object.name.last}`.toLowerCase();
-      if (name.includes(inputValue.toLowerCase())) return object;
-    });
 
-    var idades = results.reduce((acc, val) => acc + val.dob.age, 0);
-    console.log(idades);
+  users.then((object) => {
+    // Filtering and mapping users
+    results = object.results
+      .filter(({ name, picture, dob, gender }) => {
+        let nameUser = `${name.first} ${name.last}`.toLowerCase();
+        if (nameUser.includes(inputValue.toLowerCase())) return object;
+      })
+      .map((user) => {
+        return {
+          name: `${user.name.first} ${user.name.last}`,
+          gender: user.gender,
+          picture: user.picture,
+          age: user.dob.age,
+          gender: user.gender,
+        };
+      });
 
     showSearchResults(results);
   });
@@ -30,7 +39,9 @@ async function searchUser() {
 
 function showSearchResults(searchResults) {
   console.log(searchResults);
-  // TODO
+  let usersUl = document.querySelector('usersList');
+  let userLi = document.createElement('li');
+  searchResults.forEach((element) => {});
 }
 
 startEvents();
