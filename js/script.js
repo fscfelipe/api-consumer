@@ -52,15 +52,18 @@ function showSearchResults(searchResults) {
   searchResults.forEach((user) => {
     // List element
     userLi = document.createElement('li');
+    userLi.classList.add('collection-item');
+    userLi.classList.add('avatar');
+    userLi.classList.add('valign-wrapper');
     // Picture element
     let userPic = document.createElement('img');
     userPic.src = user.picture.medium;
+    userPic.classList.add('circle');
     // Span (Name) element
     let userName = document.createElement('span');
     userName.innerText = `${user.name}, `;
     // Span (Age) element
     let userAge = document.createElement('span');
-    userAge.innerText = user.age;
     userAge.innerText = user.age;
     // Appending user to list
     userLi.appendChild(userPic);
