@@ -3,6 +3,9 @@ const users = getUsers();
 const startEvents = () => {
   let searchUserInput = document.querySelector('#userSearchInput');
   searchUserInput.addEventListener('keyup', searchUser);
+
+  let btnPesquisar = document.querySelector('#btnPesquisar');
+  btnPesquisar.addEventListener('click', searchUser);
 };
 
 async function getUsers() {
@@ -13,7 +16,10 @@ async function getUsers() {
 }
 
 async function searchUser(target) {
-  if (target.key === 'Enter') {
+  if (
+    target.key === 'Enter' ||
+    (event.target.id === 'btnPesquisar' && event.type === 'click')
+  ) {
     let searchUserInput = document.querySelector('#userSearchInput');
     let inputValue = searchUserInput.value;
 
