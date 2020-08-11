@@ -21,40 +21,41 @@
     />
   </head>
   <body>
-    <header>
-      <h2 class="center">
-        Consumindo API -
-        <a
-          href="https://randomuser.me/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >randomuser</a
-        >
-      </h2>
-    </header>
+    <div class="container">
+      <header>
+        <h2 class="center">
+          Consumindo API -
+          <a
+            href="https://randomuser.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >randomuser</a
+          >
+        </h2>
+      </header>
 
-    <!-- Input de pesquisa para usuário -->
-    <div class="row center">
-      <div class="input-field col s12">
-        <!-- input nome -->
-        <div class="input-field col s5 offset-s3">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="userSearchInput" type="text" class="validate" />
-          <label for="userSearchInput">Nome</label>
+      <!-- Input de pesquisa para usuário -->
+      <div class="row center">
+        <div class="input-field col s12">
+          <!-- input nome -->
+          <div class="input-field col s5 offset-s3">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="userSearchInput" type="text" class="validate" />
+            <label for="userSearchInput">Nome</label>
+          </div>
+          <!-- button de pesquisa -->
+          <div class="input-field col s1">
+            <a class="waves-effect waves-light btn">Pesquisar</a>
+          </div>
         </div>
-        <!-- button de pesquisa -->
-        <div class="input-field col s1">
-          <a class="waves-effect waves-light btn">Pesquisar</a>
+      </div>
+
+      <div class="row">
+        <div class="users col s6">
+          <ul class="usersList"></ul>
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="users col s6">
-        <ul class="usersList"></ul>
-      </div>
-    </div>
-
     <script defer src="./js/script.js"></script>
   </body>
 </html>

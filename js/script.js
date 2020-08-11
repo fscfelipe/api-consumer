@@ -43,22 +43,28 @@ async function searchUser(target) {
   }
 }
 
+// refatorar para utilizar template strings
 function showSearchResults(searchResults) {
   // Recreate the users list
   let usersUl = document.querySelector('.usersList');
   eraseUsersList(usersUl);
-  let userLi;
 
   searchResults.forEach((user) => {
+    let divUser = document.createElement('div');
+    divUser.classList.add('card-panel');
+    divUser.classList.add('hoverable');
+
     // List element
-    userLi = document.createElement('li');
+    let userLi = document.createElement('li');
     userLi.classList.add('collection-item');
     userLi.classList.add('avatar');
     userLi.classList.add('valign-wrapper');
+
     // Picture element
     let userPic = document.createElement('img');
     userPic.src = user.picture.medium;
     userPic.classList.add('circle');
+    userPic.classList.add('responsive-img');
     // Span (Name) element
     let userName = document.createElement('span');
     userName.innerText = `${user.name}, `;
@@ -69,7 +75,8 @@ function showSearchResults(searchResults) {
     userLi.appendChild(userPic);
     userLi.appendChild(userName);
     userLi.appendChild(userAge);
-    usersUl.appendChild(userLi);
+    divUser.appendChild(userLi);
+    usersUl.appendChild(divUser);
   });
 }
 
