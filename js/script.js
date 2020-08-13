@@ -45,6 +45,7 @@ async function searchUser(target) {
         });
 
       showSearchResults(results);
+      showStatistics(results);
     });
   }
 }
@@ -84,6 +85,26 @@ function showSearchResults(searchResults) {
     divUser.appendChild(userLi);
     usersUl.appendChild(divUser);
   });
+}
+
+function showStatistics(users) {
+  let men = 0;
+  let women = 0;
+  let sumAge = 0;
+  let avgAge = 0;
+
+  users.forEach((user) => {
+    sumAge += user.age;
+
+    if (user.gender === 'female') women++;
+    else if (user.gender === 'male') men++;
+  });
+
+  document.getElementById('numMen').innerText = men;
+  document.getElementById('numWomen').innerText = women;
+  document.getElementById('sumAge').innerText = sumAge;
+  avgAge = sumAge / users.length;
+  document.getElementById('avgAge').innerText = avgAge;
 }
 
 function eraseUsersList(usersList) {
