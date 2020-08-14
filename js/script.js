@@ -100,10 +100,14 @@ function showStatistics(users) {
     else if (user.gender === 'male') men++;
   });
 
+  //Number of user found
+  document.getElementById('numUsersFound').innerText = users.length;
+
   document.getElementById('numMen').innerText = men;
   document.getElementById('numWomen').innerText = women;
   document.getElementById('sumAge').innerText = sumAge;
-  avgAge = sumAge / users.length;
+
+  avgAge = users.length > 0 ? sumAge / users.length : 0;
   document.getElementById('avgAge').innerText = avgAge;
 }
 
